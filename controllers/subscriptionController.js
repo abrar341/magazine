@@ -1,0 +1,1 @@
+//we have write the controllers here for now we write direct with routes
