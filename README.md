@@ -35,3 +35,80 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 # magazine
+
+API’s and Payloads
+Overview
+This document provides an overview of the API endpoints for saving data. It includes the API URLs, request payloads, and details on how data is structured and sent via API. 
+1.	Create Magazines – create a magazine with define which plans are there.
+•	This API allows for the creation of a magazine. Currently, it is managed through a simple API to maintain data consistency. In the future, specific user roles or permissions may be required to create a magazine.
+https://magazine-one-tau.vercel.app/api/magazines/createMagazines
+Payload
+{
+    "magazines": [
+        {
+            "name": "Tech Weekly",
+            "description": "Latest tech news and trends",
+            "base_price": 15,
+            "plans": ["67ae4b78dc229fab2dbafb5b", "67ae4b78dc229fab2dbafb5c"]
+        },
+        {
+            "name": "Health & Wellness",
+            "description": "Tips for a healthier lifestyle",
+            "base_price": 10,
+            "plans": ["67ae4b78dc229fab2dbafb5d", "67ae4b78dc229fab2dbafb5e"]
+        }
+    ]
+}
+2.	Create Plans
+For now, predefined plans will be created in the database using a command-line script to ensure data consistency.
+Scripts/seedPlan.js
+node Scripts/seedPlan.js
+
+3.	Register
+https://magazine-one-tau.vercel.app/api/auth/register
+Payload
+{
+  "name": "Ali",
+  "email": "ahmed@gmail.com",
+  "password": "123456"
+}
+
+4.	Login
+https://magazine-one-tau.vercel.app/api/auth/login
+Payload
+{
+  "email": "abrar@gmail.com",
+  "password": "123456"
+}
+
+5.	Magazines-get all magazines
+https://magazine-one-tau.vercel.app/api/magazines
+6.	Create Subscription- make a subscription of magazine with any plan 
+https://magazine-one-tau.vercel.app/api/subscriptions/create
+Payload
+
+{
+  "magazine_id": "67adea2c67a9bed5087a675d",
+  "plan_id": "67ade7612dcc1e2f98e14fe8",
+  "price": 100
+}
+
+
+7.	Retrieve Subscriptions
+https://magazine-one-tau.vercel.app/api/subscriptions
+8.	Modify Subscription
+https://magazine-one-tau.vercel.app/api/subscriptions/modify
+Payload
+{
+  "magazine_id": "67adea2c67a9bed5087a675d",
+  "new_plan_id": "67ade7612dcc1e2f98e14fea",
+  "price": 500	
+}
+
+9.	Delete Subscription – cancel any subscription plan
+https://magazine-one-tau.vercel.app/api/subscriptions/cancel
+Payload
+{
+  "magazine_id": "67adea2c67a9bed5087a675d"
+}
+
